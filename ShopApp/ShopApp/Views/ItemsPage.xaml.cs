@@ -23,7 +23,7 @@ namespace ShopApp.Views
         public ItemsPage()
         {
             InitializeComponent();
-            //commment
+            //commment stage
 
             BindingContext = viewModel = new ItemsViewModel();
         }
