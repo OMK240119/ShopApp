@@ -14,12 +14,10 @@ namespace ShopApp.Services
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Item { ItemCode = Guid.NewGuid().ToString(), ItemName = "First item",Qty=2, Price=100 },
+                 new Item { ItemCode = Guid.NewGuid().ToString(), ItemName = "First item",Qty=2, Price=100 },
+                  new Item { ItemCode = Guid.NewGuid().ToString(), ItemName = "First item",Qty=2, Price=100 },
+                   new Item { ItemCode = Guid.NewGuid().ToString(), ItemName = "First item",Qty=2, Price=100 },
             };
         }
 
@@ -32,7 +30,7 @@ namespace ShopApp.Services
 
         public async Task<bool> UpdateItemAsync(Item item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+            var oldItem = items.Where((Item arg) => arg.ItemCode == item.ItemCode).FirstOrDefault();
             items.Remove(oldItem);
             items.Add(item);
 
@@ -41,7 +39,7 @@ namespace ShopApp.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            var oldItem = items.Where((Item arg) => arg.ItemCode == id).FirstOrDefault();
             items.Remove(oldItem);
 
             return await Task.FromResult(true);
@@ -49,7 +47,7 @@ namespace ShopApp.Services
 
         public async Task<Item> GetItemAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(items.FirstOrDefault(s => s.ItemCode == id));
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)

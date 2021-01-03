@@ -14,10 +14,13 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Item.Text}" d:Text="Item name" FontSize="Small" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small" Margin="0" />
+            <Label Text="Item Name" FontSize="Medium" />
+            <Entry x:Name="ItemName" Text="{Binding Item.ItemName}" Placeholder="Item Name" FontSize="Small" />
+            <!--<Entry Text="{Binding Item.ItemName}" d:Text="Item name" FontSize="Small" />-->
+            <Label Text="Quantity" FontSize="Medium" />
+            <Entry x:Name="Qty" Text="{Binding Item.Qty}" d:Text="Quantity" FontSize="Small" Margin="0" />
+            <Label Text="Price" FontSize="Medium" />
+            <Entry  x:Name="Price" Text="{Binding Item.Price}" d:Text="Price" FontSize="Small" Margin="0" />
         </StackLayout>
     </ContentPage.Content>
     

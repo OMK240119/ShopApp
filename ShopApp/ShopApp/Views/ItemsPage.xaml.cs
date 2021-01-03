@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using ShopApp.Models;
 using ShopApp.Views;
 using ShopApp.ViewModels;
+using System.IO;
 
 namespace ShopApp.Views
 {
@@ -52,5 +53,6 @@ namespace ShopApp.Views
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
+
     }
 }

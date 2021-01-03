@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using ShopApp.Models;
 using ShopApp.Views;
+using System.Collections.Generic;
 
 namespace ShopApp.ViewModels
 {
@@ -19,18 +20,22 @@ namespace ShopApp.ViewModels
         {
             Title = "Browse";
             Items = new ObservableCollection<Item>();
+
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
                 var newItem = item as Item;
-                Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
+                Database db = new Database();
+                db.insertIntoTable(newItem);
+                //Items.Add(newItem);
+                //await DataStore.AddItemAsync(newItem);
             });
         }
 
         async Task ExecuteLoadItemsCommand()
         {
+            Database db = new Database();
             if (IsBusy)
                 return;
 
@@ -39,8 +44,9 @@ namespace ShopApp.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                List<Item> itemList = db.selectTable();
+                //var items = await DataStore.GetItemsAsync(true);
+                foreach (var item in itemList)
                 {
                     Items.Add(item);
                 }

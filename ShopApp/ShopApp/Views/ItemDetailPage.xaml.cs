@@ -28,8 +28,8 @@ namespace ShopApp.Views
 
             var item = new Item
             {
-                Text = "Item 1",
-                Description = "This is an item description."
+                ItemName = "Item 1",
+                Price =100
             };
 
             viewModel = new ItemDetailViewModel(item);

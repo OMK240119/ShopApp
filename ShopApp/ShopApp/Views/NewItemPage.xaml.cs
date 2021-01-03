@@ -18,19 +18,20 @@ namespace ShopApp.Views
         public NewItemPage()
         {
             InitializeComponent();
-
-            Item = new Item
-            {
-                Text = "Item name",
-                Description = "This is an item description."
-            };
-
+            Item item = new Item();
+           
             BindingContext = this;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            Item itm = new Item();
+            itm.ItemCode = "0003";
+            itm.ItemName = ItemName.Text;
+            itm.Qty =Convert.ToInt32(Qty.Text);
+            itm.Price = Convert.ToDouble(Price.Text);
+            itm.TotalPrice = itm.Qty * itm.Price;
+            MessagingCenter.Send(this, "AddItem", itm);
             await Navigation.PopModalAsync();
         }
 
